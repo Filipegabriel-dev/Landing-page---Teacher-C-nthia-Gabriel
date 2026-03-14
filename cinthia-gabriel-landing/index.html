@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aulas de inglês online ao vivo com Cínthia Gabriel. Aprenda para viagens, trabalho e conversação.">
+  <title>Cínthia Gabriel | Inglês Online - Fale inglês com confiança</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-blue': '#0F2B5C',
+            'secondary-blue': '#0A04BF',
+            'accent-red': '#F22B3A',
+            'light-gray': '#D9D9D9',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 4px 20px rgba(15, 43, 92, 0.08)',
+            'soft-lg': '0 10px 40px rgba(15, 43, 92, 0.12)',
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="font-poppins antialiased text-gray-800">
+
+  <!-- ==================== HEADER / NAVEGAÇÃO ==================== -->
+  <header class="sticky top-0 z-50 bg-primary-blue/90 backdrop-blur-md border-b border-white/10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo - speech bubble + heart (moodboard) -->
+        <a href="#hero" class="flex items-center gap-2">
+          <svg class="w-10 h-10 text-accent-red flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true">
+            <img src="assets/images/logo2web.svg" alt="Cínthia Gabriel" class="w-12 h-12">
+            <path d="M8 4h24c2.2 0 4 1.8 4 4v14c0 2.2-1.8 4-4 4H14l-6 6V8c0-2.2 1.8-4 4-4z" fill="currentColor"/>
+            <path d="M20 11c-1.7 0-3 1.3-3 3 0 2.2 2 4.2 3 5.5 1-1.3 3-3.3 3-5.5 0-1.7-1.3-3-3-3z" fill="white"/>
+          </svg>
+          <div>
+            <span class="font-montserrat font-bold text-white block leading-tight">Cínthia Gabriel</span>
+            <span class="text-white/70 text-xs hidden sm:block">English Teacher</span>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#beneficios" class="text-white font-medium hover:text-white/90 transition-colors">Benefícios</a>
+          <a href="#metodo" class="text-white font-medium hover:text-white/90 transition-colors">Método</a>
+          <a href="#depoimentos" class="text-white font-medium hover:text-white/90 transition-colors">Depoimentos</a>
+          <a href="#planos" class="text-white font-medium hover:text-white/90 transition-colors">Planos</a>
+          <a href="#contato" class="text-white font-medium hover:text-white/90 transition-colors">Contato</a>
+        </nav>
+
+        <!-- CTA + Hamburger -->
+        <div class="flex items-center gap-4">
+          <a href="#contato" class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent-red text-white font-semibold rounded-2xl hover:bg-[#e02534] transition-colors" aria-label="Agendar aula">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Agendar aula
+          </a>
+          <button type="button" id="menu-toggle" class="md:hidden relative w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/10 transition-colors" aria-label="Abrir menu" aria-expanded="false">
+            <svg id="menu-icon" class="w-6 h-6 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="menu-close" class="w-6 h-6 absolute hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile nav drawer -->
+    <div id="mobile-nav" class="hidden md:hidden border-t border-white/20 bg-primary-blue/98 backdrop-blur-md">
+      <nav class="container mx-auto px-4 py-4 flex flex-col gap-2">
+        <a href="#beneficios" class="py-2 text-white font-medium">Benefícios</a>
+        <a href="#metodo" class="py-2 text-white font-medium">Método</a>
+        <a href="#depoimentos" class="py-2 text-white font-medium">Depoimentos</a>
+        <a href="#planos" class="py-2 text-white font-medium">Planos</a>
+        <a href="#contato" class="py-2 text-white font-medium">Contato</a>
+        <a href="#contato" class="mt-2 py-3 bg-accent-red text-white font-semibold rounded-xl text-center">Agendar aula</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="relative min-h-screen overflow-hidden bg-secondary-blue">
+    <!-- Background image - preenche todo o hero (use hero-banner.png ou DSC_2986.jpg) -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/banner\ head.png');"></div>
+    <!-- Overlay para legibilidade: gradiente escuro no lado esquerdo -->
+    
+
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-screen flex flex-col justify-center">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-end max-w-6xl">
+        <!-- Hero content - sobre o lado esquerdo (área azul) -->
+        <div class="order-1 text-center lg:text-left">
+          <h1 class="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4 drop-shadow-lg">
+            Fale inglês com confiança
+          </h1>
+          <p class="text-lg sm:text-xl text-white/90 mb-8 max-w-xl mx-auto lg:mx-0">
+            Aulas de inglês online ao vivo para conversação, viagens e trabalho.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+            <a href="#contato" class="inline-flex items-center justify-center px-8 py-4 bg-accent-red text-white font-semibold rounded-2xl shadow-lg hover:bg-[#e02534] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300" aria-label="Agendar aula experimental">
+              Agendar aula experimental
+            </a>
+            <a href="#metodo" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-primary-blue transition-all duration-300" aria-label="Conheça o método">
+              Conheça o método
+            </a>
+          </div>
+          <!-- Trust indicators - speech bubbles com contraste -->
+          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
+            <span class="inline-block bg-white rounded-2xl px-4 py-2.5 shadow-lg text-primary-blue font-medium text-sm -rotate-1 hover:rotate-0 transition-transform">Aulas ao vivo</span>
+            <span class="inline-block bg-white rounded-2xl px-4 py-2.5 shadow-lg text-primary-blue font-medium text-sm rotate-1 hover:rotate-0 transition-transform">Método prático</span>
+            <span class="inline-block bg-white rounded-2xl px-4 py-2.5 shadow-lg text-primary-blue font-medium text-sm -rotate-1 hover:rotate-0 transition-transform">Plano personalizado</span>
+          </div>
+        </div>
+        <!-- Espaço reservado para a imagem (já está no background) - mantém layout em desktop -->
+        <div class="order-2 hidden lg:block lg:min-h-[400px]"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BENEFITS SECTION ==================== -->
+  <section id="beneficios" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-primary-blue text-center mb-4">
+        Por que aprender comigo?
+      </h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        Aulas desenhadas para os seus objetivos, com método prático e horários que se encaixam na sua rotina.
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <!-- Benefit 1 -->
+        <div class="bg-white rounded-2xl p-6 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 border border-light-gray/50">
+          <div class="w-14 h-14 bg-secondary-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-secondary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0h.5a2.5 2.5 0 002.5-2.5V3.935M12 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-primary-blue mb-2">Aprenda inglês para viagens</h3>
+          <p class="text-gray-600 text-sm">Seja fluente para explorar o mundo e se comunicar com confiança em qualquer destino.</p>
+        </div>
+        <!-- Benefit 2 -->
+        <div class="bg-white rounded-2xl p-6 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 border border-light-gray/50">
+          <div class="w-14 h-14 bg-primary-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-primary-blue mb-2">Inglês para trabalho</h3>
+          <p class="text-gray-600 text-sm">Evolua na carreira com inglês profissional para reuniões, e-mails e apresentações.</p>
+        </div>
+        <!-- Benefit 3 -->
+        <div class="bg-white rounded-2xl p-6 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 border border-light-gray/50">
+          <div class="w-14 h-14 bg-accent-red/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-primary-blue mb-2">Conversação prática</h3>
+          <p class="text-gray-600 text-sm">Pratique falar desde o primeiro dia com situações reais do dia a dia.</p>
+        </div>
+        <!-- Benefit 4 -->
+        <div class="bg-white rounded-2xl p-6 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 border border-light-gray/50">
+          <div class="w-14 h-14 bg-secondary-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-secondary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-primary-blue mb-2">Horários flexíveis</h3>
+          <p class="text-gray-600 text-sm">Aulas online que se encaixam na sua rotina, no horário que você preferir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== METHOD SECTION ==================== -->
+  <section id="metodo" class="py-16 md:py-24 bg-light-gray/30">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-primary-blue text-center mb-4">
+        Como funciona o método
+      </h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">
+        Em 3 passos simples você começa a evoluir no inglês
+      </p>
+      <div class="grid md:grid-cols-3 gap-8 md:gap-6">
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="bg-white rounded-3xl p-8 shadow-soft hover:shadow-soft-lg transition-shadow duration-300 border border-light-gray/50">
+            <div class="w-16 h-16 bg-accent-red text-white rounded-2xl flex items-center justify-center font-montserrat font-bold text-2xl mb-6">1</div>
+            <h3 class="font-montserrat font-bold text-xl text-primary-blue mb-3">Aula experimental</h3>
+            <p class="text-gray-600">Agende sua aula grátis e conheça o método. Avaliamos seu nível e definimos os melhores objetivos juntos.</p>
+          </div>
+          <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-secondary-blue/30 -translate-y-1/2" aria-hidden="true"></div>
+        </div>
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="bg-white rounded-3xl p-8 shadow-soft hover:shadow-soft-lg transition-shadow duration-300 border border-light-gray/50">
+            <div class="w-16 h-16 bg-secondary-blue text-white rounded-2xl flex items-center justify-center font-montserrat font-bold text-2xl mb-6">2</div>
+            <h3 class="font-montserrat font-bold text-xl text-primary-blue mb-3">Plano de estudos personalizado</h3>
+            <p class="text-gray-600">Criamos um plano exclusivo para você, alinhado aos seus objetivos e ao seu ritmo de aprendizado.</p>
+          </div>
+          <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-secondary-blue/30 -translate-y-1/2" aria-hidden="true"></div>
+        </div>
+        <!-- Step 3 -->
+        <div>
+          <div class="bg-white rounded-3xl p-8 shadow-soft hover:shadow-soft-lg transition-shadow duration-300 border border-light-gray/50">
+            <div class="w-16 h-16 bg-primary-blue text-white rounded-2xl flex items-center justify-center font-montserrat font-bold text-2xl mb-6">3</div>
+            <h3 class="font-montserrat font-bold text-xl text-primary-blue mb-3">Prática de conversação real</h3>
+            <p class="text-gray-600">Aulas ao vivo focadas em falar. Você pratica situações reais e ganha confiança em pouco tempo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOCIAL PROOF ==================== -->
+  <section id="depoimentos" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-primary-blue text-center mb-4">
+        O que dizem os alunos
+      </h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        Histórias de quem já está falando inglês com confiança
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-light-gray/20 rounded-2xl p-6 shadow-soft">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-700 mb-4">"As aulas são muito dinâmicas e práticas. Em poucos meses já consegui me comunicar em uma viagem para o exterior!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-light-gray flex items-center justify-center overflow-hidden">
+              <span class="text-primary-blue font-semibold text-sm">MR</span>
+            </div>
+            <div>
+              <p class="font-semibold text-primary-blue">Maria R.</p>
+              <p class="text-sm text-gray-500">Aluna há 8 meses</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="bg-light-gray/20 rounded-2xl p-6 shadow-soft">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-700 mb-4">"O plano personalizado fez toda a diferença. Cínthia entendeu exatamente o que eu precisava para o trabalho e as aulas são super objetivas."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-light-gray flex items-center justify-center overflow-hidden">
+              <span class="text-primary-blue font-semibold text-sm">JS</span>
+            </div>
+            <div>
+              <p class="font-semibold text-primary-blue">João S.</p>
+              <p class="text-sm text-gray-500">Aluno há 6 meses</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="bg-light-gray/20 rounded-2xl p-6 shadow-soft">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-700 mb-4">"Adoro as aulas! O ambiente é super acolhedor e eu perdi a vergonha de falar. Recomendo demais!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-light-gray flex items-center justify-center overflow-hidden">
+              <span class="text-primary-blue font-semibold text-sm">AL</span>
+            </div>
+            <div>
+              <p class="font-semibold text-primary-blue">Ana L.</p>
+              <p class="text-sm text-gray-500">Aluna há 1 ano</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRONUNCIATION CHALLENGE ==================== -->
+  <section id="desafio" class="py-16 md:py-24 bg-gradient-to-br from-secondary-blue via-primary-blue to-secondary-blue text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 w-32 h-32 border-4 border-white rounded-full"></div>
+      <div class="absolute bottom-20 right-20 w-48 h-48 border-4 border-white rounded-full"></div>
+    </div>
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-2xl mb-6">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-4a4 4 0 01-8 0V9a4 4 0 118 0v2z"/>
+          </svg>
+        </div>
+        <h2 class="font-montserrat font-bold text-3xl md:text-4xl mb-4">
+          Desafio da Pronúncia
+        </h2>
+        <p class="text-lg md:text-xl text-white/90 mb-8">
+          Melhore sua pronúncia e fale inglês com mais naturalidade. Participe do desafio gratuito e descubra técnicas práticas para soar como um nativo.
+        </p>
+        <a href="https://www.instagram.com/p/DGVnYK3gG-J/" target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-accent-red text-white font-semibold rounded-2xl shadow-lg hover:bg-[#e02534] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300" aria-label="Participar do Desafio da Pronúncia">
+          Participar do desafio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section id="planos" class="py-16 md:py-24 bg-light-gray/30">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-primary-blue text-center mb-4">
+        Planos e investimento
+      </h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        Escolha o formato ideal para os seus objetivos
+      </p>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <!-- Plan 1 -->
+        <div class="bg-white rounded-3xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 border-2 border-transparent">
+          <h3 class="font-montserrat font-bold text-xl text-primary-blue mb-2">Plano semestral</h3>
+          <p class="text-gray-600 text-sm mb-6">Aula individual atenção total para você evoluir no seu ritmo</p>
+          <p class="text-3xl font-bold text-primary-blue mb-1">Sob consulta</p>
+          <p class="text-sm text-gray-500 mb-6">Pacote de 00 aulas</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">100% personalizado</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Horário flexível</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Material incluso</span>
+            </li>
+          </ul>
+          <a href="#contato" class="block w-full text-center px-6 py-3 border-2 border-primary-blue text-primary-blue font-semibold rounded-2xl hover:bg-primary-blue hover:text-white transition-all duration-300">Saber mais</a>
+        </div>
+        <!-- Plan 2 - Recommended -->
+        <div class="bg-white rounded-3xl p-8 shadow-soft-lg border-2 border-accent-red relative transform md:-translate-y-2">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent-red text-white text-sm font-semibold rounded-full">Recomendado</div>
+          <h3 class="font-montserrat font-bold text-xl text-primary-blue mb-2">Aulas em grupo</h3>
+          <p class="text-gray-600 text-sm mb-6">Pratique com outros alunos em turmas pequenas</p>
+          <p class="text-3xl font-bold text-primary-blue mb-1">Sob consulta</p>
+          <p class="text-sm text-gray-500 mb-6">Por mês</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Turmas reduzidas</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Mais conversação</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Preço acessível</span>
+            </li>
+          </ul>
+          <a href="#contato" class="block w-full text-center px-6 py-4 bg-accent-red text-white font-semibold rounded-2xl hover:bg-[#e02534] shadow-lg hover:shadow-xl transition-all duration-300">Começar agora</a>
+        </div>
+        <!-- Plan 3 -->
+        <div class="bg-white rounded-3xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 border-2 border-transparent">
+          <h3 class="font-montserrat font-bold text-xl text-primary-blue mb-2">Plano anual</h3>
+          <p class="text-gray-600 text-sm mb-6">Pacote com 00 aulas e com desconto</p>
+          <p class="text-3xl font-bold text-primary-blue mb-1">Sob consulta</p>
+          <p class="text-sm text-gray-500 mb-6">4 ou 8 aulas/mês</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Melhor custo-benefício</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Acompanhamento contínuo</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-700">Plano de estudos incluso</span>
+            </li>
+          </ul>
+          <a href="#contato" class="block w-full text-center px-6 py-3 border-2 border-primary-blue text-primary-blue font-semibold rounded-2xl hover:bg-primary-blue hover:text-white transition-all duration-300">Saber mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA ==================== -->
+  <section id="contato" class="py-20 md:py-28 bg-gradient-to-r from-accent-red to-[#e02534] text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
+    </div>
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-montserrat font-bold text-3xl md:text-5xl mb-4 max-w-3xl mx-auto">
+        Pronto para falar inglês com confiança?
+      </h2>
+      <p class="text-xl md:text-2xl text-white/95 mb-10 max-w-2xl mx-auto">
+        Agende sua aula experimental grátis e descubra como o método funciona para você.
+      </p>
+      <a href="https://wa.me/552139550659" target="_blank" class="inline-flex items-center justify-center px-12 py-5 bg-white text-accent-red font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" aria-label="Comece seu inglês hoje - Agendar aula">
+        Comece seu inglês hoje
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-primary-blue text-white py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="flex items-center gap-3">
+          <img src="assets/images/logo2web.svg" alt="Cínthia Gabriel" class="w-12 h-12">
+        <div>
+            <span class="font-montserrat font-bold text-white block leading-tight">Cínthia Gabriel</span>
+            <span class="text-white/70 text-xs hidden sm:block">English Teacher</span>
+          </div> 
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-6">
+          <a href="mailto:teachercinthiagabriel@gmail.com" class="text-white/90 hover:text-white transition-colors">teachercinthiagabriel@gmail.com</a>
+          <div class="flex gap-4">
+            <a href="https://www.instagram.com/teachercinthiagabriel/" target="_blank" class="text-white/90 hover:text-white transition-colors" aria-label="Instagram">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/552139550659" target="_blank" class="text-white/90 hover:text-white transition-colors" aria-label="WhatsApp">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-white/20 text-center text-white/70 text-sm">
+        <p>&copy; 2025 Cínthia Gabriel. Todos os direitos reservados. Created by <a href="https://www.instagram.com/gavri_el/" target="_blank" class="text-white/90 hover:text-white transition-colors">Filipe Gabriel | Design</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "cinthia-gabriel-landing",
+  "version": "1.0.0",
+  "description": "Landing page para professora de inglês Cínthia Gabriel",
+  "scripts": {
+    "build": "npx tailwindcss -i ./assets/css/styles.css -o ./dist/output.css --minify",
+    "watch": "tailwindcss -i ./assets/css/styles.css -o ./dist/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
