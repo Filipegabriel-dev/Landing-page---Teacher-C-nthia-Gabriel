@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico de Inglês | Clear Communication Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --surface: #ffffff;
+      --surface2: #f0f4fb;
+      --accent: #1a3a6b;
+      --accent-light: #2755a8;
+      --accent-glow: #3b6fd4;
+      --text: #0d1b2e;
+      --muted: #6b7c96;
+      --border: #dce3ef;
+      --success: #2e7d5a;
+      --gold: #c8992a;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── SCREENS ── */
+    .screen {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ══════════════════════════════════════
+     SCREEN 1 — LANDING
+  ══════════════════════════════════════ */
+    #screen-landing {
+      background: var(--surface);
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #screen-landing::before {
+      content: '';
+      position: absolute;
+      top: -180px;
+      right: -180px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(43, 85, 168, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    #screen-landing::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(43, 85, 168, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .landing-inner {
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-light);
+      letter-spacing: 0.03em;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.1s forwards;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    /* Headlines */
+    .landing-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.25s forwards;
+    }
+
+    .landing-headline em {
+      font-style: italic;
+      color: var(--accent-light);
+      position: relative;
+    }
+
+    .landing-headline em::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-light), transparent);
+    }
+
+    .landing-sub {
+      font-size: clamp(1rem, 2.5vw, 1.13rem);
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.4s forwards;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.55s forwards;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 18px;
+      font-size: 13.5px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .stat-item:not(:last-child) {
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-icon {
+      font-size: 15px;
+    }
+
+    /* CTA */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 17px 40px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 6px 30px rgba(26, 58, 107, 0.18);
+      letter-spacing: 0.01em;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.7s forwards;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(39, 85, 168, 0.28);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .trust-line {
+      display: block;
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.85s forwards;
+    }
+
+    /* Decorative line */
+    .deco-line {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-light), transparent);
+      margin: 40px auto 0;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 1s forwards;
+    }
+
+    .profile-greeting {
+      font-size: 0.93rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-greeting strong {
+      color: var(--accent);
+    }
+
+    /* ══════════════════════════════════════
+     SCREEN 2.5 — LEAD CAPTURE
+  ══════════════════════════════════════ */
+    #screen-capture {
+      background: var(--bg);
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 80px;
+    }
+
+    .capture-wrap {
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .capture-card {
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 36px rgba(26, 58, 107, 0.08);
+      padding: 44px 40px 40px;
+      text-align: center;
+      animation: cardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @media (max-width: 500px) {
+      .capture-card {
+        padding: 32px 22px 30px;
+      }
+    }
+
+    .capture-icon {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .capture-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+
+    .capture-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .capture-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 30px;
+      line-height: 1.65;
+    }
+
+    .capture-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      color: var(--text);
+      background: var(--surface2);
+      outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .field-input:focus {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 3px rgba(39, 85, 168, 0.1);
+      background: #fff;
+    }
+
+    .field-input.invalid {
+      border-color: #d64040;
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #d64040;
+      font-weight: 500;
+      min-height: 16px;
+      display: block;
+    }
+
+    .btn-capture {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 15px 24px;
+      border-radius: 11px;
+      border: none;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.2s, transform 0.12s, box-shadow 0.2s;
+      box-shadow: 0 5px 24px rgba(26, 58, 107, 0.2);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-capture:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(39, 85, 168, 0.28);
+    }
+
+    .capture-privacy {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── A/B SWITCHER (visible in dev only — hide in production if desired) ── */
+    .ab-switcher {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeSlideDown 0.7s ease 0.05s forwards;
+    }
+
+    .ab-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .ab-btn {
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .ab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .ab-btn:hover:not(.active) {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+    }
+
+
+    #screen-quiz {
+      background: var(--bg);
+      align-items: center;
+      padding: 40px 20px 80px;
+    }
+
+    .quiz-wrap {
+      max-width: 640px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .quiz-header {
+      margin-bottom: 32px;
+    }
+
+    .quiz-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .quiz-brand {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .quiz-counter {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Progress bar */
+    .progress-bar-track {
+      width: 100%;
+      height: 5px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+      border-radius: 100px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    /* Question card */
+    .question-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 36px 32px 30px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 24px rgba(26, 58, 107, 0.05);
+      animation: cardIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .question-category {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 3.5vw, 1.55rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 28px;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      width: 100%;
+      background: var(--surface2);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.18s, background 0.18s, transform 0.12s;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      color: var(--text);
+      position: relative;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--accent-light);
+      background: #eef3fc;
+      transform: translateX(3px);
+    }
+
+    .option-letter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 26px;
+      background: var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: background 0.18s, color 0.18s;
+      margin-top: 1px;
+    }
+
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: #eaf0fa;
+    }
+
+    .option-btn.selected .option-letter {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: #edf7f2;
+    }
+
+    .option-btn.correct .option-letter {
+      background: var(--success);
+      color: #fff;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn:disabled:not(.selected):not(.correct) {
+      opacity: 0.6;
+    }
+
+    /* Feedback */
+    .feedback-box {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 16px;
+      background: #f0f4fb;
+      border-left: 3px solid var(--accent-light);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.91rem;
+      color: var(--accent);
+      font-weight: 500;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .feedback-box.visible {
+      display: block;
+    }
+
+    /* Next button */
+    .btn-next {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.12s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-next.visible {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .btn-next:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════
+     SCREEN 3 — RESULT
+  ══════════════════════════════════════ */
+    #screen-result {
+      background: var(--bg);
+      align-items: center;
+      padding: 50px 20px 90px;
+    }
+
+    .result-wrap {
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Score ring */
+    .score-section {
+      text-align: center;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeSlideDown 0.6s ease 0.1s forwards;
+    }
+
+    .score-ring-container {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+    }
+
+    .score-ring-svg {
+      transform: rotate(-90deg);
+      width: 160px;
+      height: 160px;
+    }
+
+    .score-ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 10;
+    }
+
+    .score-ring-fill {
+      fill: none;
+      stroke: url(#ringGradient);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 408;
+      stroke-dashoffset: 408;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .score-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .score-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      display: block;
+    }
+
+    .score-label-small {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .score-level {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* Profile card */
+    .profile-card {
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 28px rgba(26, 58, 107, 0.06);
+      opacity: 0;
+      animation: fadeSlideDown 0.6s ease 0.3s forwards;
+    }
+
+    .profile-label {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+    }
+
+    .profile-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .profile-body p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .profile-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Strengths / Limits grid */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 500px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .grid-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .grid-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .grid-col ul li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .grid-col ul li span.icon {
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Testimonial */
+    .testimonial-box {
+      background: var(--surface2);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-top: 28px;
+      border-left: 4px solid var(--accent-light);
+      opacity: 0;
+      animation: fadeSlideDown 0.6s ease 0.5s forwards;
+    }
+
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-author {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent-light);
+    }
+
+    .testimonial-role {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* CTA section */
+    .cta-section {
+      background: var(--accent);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeSlideDown 0.6s ease 0.7s forwards;
+    }
+
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .cta-body {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 480px;
+      margin: 0 auto 26px;
+      line-height: 1.7;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--accent);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .scarcity {
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .scarcity::before {
+      content: '⏳';
+      font-size: 13px;
+    }
+
+    /* ── BRAND FOOTER ── */
+    .brand-footer {
+      text-align: center;
+      padding: 30px 20px 10px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* Animations */
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════
+     SCREEN 1 — LANDING
+══════════════════════════════════════ -->
+  <section class="screen active" id="screen-landing">
+    <div class="landing-inner">
+
+      <!-- A/B HEADLINE SWITCHER — remova este bloco em produção se quiser ocultar do usuário -->
+      <div class="logo">
+        <img src="assets/img/Ativo 3web.png" alt="logo" width="120" />
+      </div>
+
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Diagnóstico Gratuito &nbsp;·&nbsp; 4 minutos
+      </div>
+
+      <!-- ⚠️ TESTE A/B DE HEADLINE
+         Defina ACTIVE_HEADLINE = 'A', 'B' ou 'C' no JavaScript abaixo
+         para alternar qual variante será exibida. Troque e compare conversões. -->
+      <h1 class="landing-headline" id="landing-headline-text"></h1>
+
+      <p class="landing-sub" id="landing-sub-text"></p>
+
+      <div class="stats-row">
+        <div class="stat-item"><span class="stat-icon">⏱</span> 4 minutos</div>
+        <div class="stat-item"><span class="stat-icon">📋</span> 10 perguntas</div>
+        <div class="stat-item"><span class="stat-icon">✅</span> 100% gratuito</div>
+      </div>
+
+      <button class="btn-primary" onclick="startQuiz()">
+        Descobrir meu nível agora →
+      </button>
+      <span class="trust-line">Sem cadastro. Resultado imediato.</span>
+
+      <div class="deco-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+     SCREEN 2 — QUIZ
+══════════════════════════════════════ -->
+  <section class="screen" id="screen-quiz">
+    <div class="quiz-wrap">
+
+      <div class="quiz-header">
+        <div class="quiz-top">
+          <span class="quiz-brand">Clear Communication Path</span>
+          <span class="quiz-counter" id="quiz-counter">Pergunta 1 de 10</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="question-card" id="question-card">
+        <div class="question-category" id="q-category"></div>
+        <p class="question-text" id="q-text"></p>
+        <div class="options-list" id="options-list"></div>
+        <div class="feedback-box" id="feedback-box"></div>
+        <button class="btn-next" id="btn-next" onclick="nextQuestion()">
+          Próxima pergunta →
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+     SCREEN 2.5 — CAPTURA DE LEAD
+══════════════════════════════════════ -->
+  <section class="screen" id="screen-capture">
+    <div class="capture-wrap">
+
+      <div class="capture-card">
+        <div class="capture-icon">🎯</div>
+        <p class="capture-tag">Quase lá — seu resultado está pronto</p>
+        <h2 class="capture-headline">Para onde devo enviar sua análise completa?</h2>
+        <p class="capture-sub">Informe seu nome e e-mail para liberar o diagnóstico. Sem spam — promessa de professora.
+        </p>
+
+        <div class="capture-fields">
+          <div class="field-group">
+            <label class="field-label" for="lead-name">Seu primeiro nome</label>
+            <input class="field-input" type="text" id="lead-name" placeholder="Ex: Ana" autocomplete="given-name" />
+            <span class="field-error" id="error-name"></span>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="lead-email">Seu melhor e-mail</label>
+            <input class="field-input" type="email" id="lead-email" placeholder="Ex: ana@empresa.com"
+              autocomplete="email" />
+            <span class="field-error" id="error-email"></span>
+          </div>
+          <button class="btn-capture" onclick="submitCapture()">
+            Ver meu resultado agora →
+          </button>
+          <p class="capture-privacy">🔒 Seus dados estão seguros. Nunca compartilhamos com terceiros.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="screen" id="screen-result">
+    <div class="result-wrap">
+
+      <!-- Score ring -->
+      <div class="score-section">
+        <div class="score-ring-container">
+          <svg class="score-ring-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1a3a6b" />
+                <stop offset="100%" style="stop-color:#3b6fd4" />
+              </linearGradient>
+            </defs>
+            <circle class="score-ring-bg" cx="80" cy="80" r="65" />
+            <circle class="score-ring-fill" id="ring-fill" cx="80" cy="80" r="65" />
+          </svg>
+          <div class="score-number">
+            <span class="score-value" id="score-display">0</span>
+            <span class="score-label-small">de 100</span>
+          </div>
+        </div>
+        <div class="score-level" id="score-level-label"></div>
+      </div>
+
+      <!-- Profile card -->
+      <div class="profile-card" id="profile-card"></div>
+
+      <!-- Testimonial -->
+      <div class="testimonial-box" id="testimonial-box"></div>
+
+      <!-- CTA -->
+      <div class="cta-section" id="cta-section"></div>
+
+      <div class="brand-footer">
+        © Cínthia Gabriel · @teachercinthiagabriel · Clear Communication Path
+      </div>
+
+    </div>
+  </section>
+
+
+  <script>
+    // ══════════════════════════════════════
+    // DATA — QUIZ QUESTIONS
+    // ══════════════════════════════════════
+    const questions = [
+      // P1–P3: COMPORTAMENTAIS
+      {
+        category: "Como você age hoje",
+        text: "Quando alguém te faz uma pergunta em inglês no trabalho, o que geralmente acontece?",
+        options: [
+          { label: "A", text: "Entendo a pergunta, mas fico nervoso(a) e acabo respondendo com palavras soltas ou gestos", score: 1 },
+          { label: "B", text: "Entendo e respondo, mas saio com aquela sensação de que podia ter me expressado melhor", score: 7 },
+          { label: "C", text: "Peço pra repetir mais devagar e aí consigo responder alguma coisa", score: 4 },
+          { label: "D", text: "Respondo sem dificuldade — o problema é quando o assunto fica mais técnico ou informal", score: 10 },
+        ],
+        feedback: {
+          1: "Esse travamento é mais comum do que parece — e tem solução técnica, não é falta de talento.",
+          4: "Pedir pra repetir é uma estratégia válida. O próximo passo é ganhar velocidade de resposta.",
+          7: "Você já está no caminho. O que falta é converter entendimento em expressão automática.",
+          10: "Ótimo ponto de partida — você já tem base real para dar o próximo salto."
+        }
+      },
+      {
+        category: "Como você age hoje",
+        text: "Quando você precisa mandar um e-mail em inglês para um cliente ou colega estrangeiro, como você se sente?",
+        options: [
+          { label: "A", text: "Dou um jeito, mas reviso várias vezes com medo de escrever algo errado ou soar estranho", score: 7 },
+          { label: "B", text: "Peço ajuda pra alguém ou uso o Google Translate como base", score: 1 },
+          { label: "C", text: "Escrevo sem grande dificuldade, mas na hora de falar é outra história", score: 10 },
+          { label: "D", text: "Evito ao máximo — prefiro que outra pessoa escreva por mim", score: 4 },
+        ],
+        feedback: {
+          1: "Depender de tradução é o primeiro sinal de que sua base precisa ser reforçada — e isso é totalmente reversível.",
+          4: "Evitar é o bloqueio em ação. Existe um caminho mais leve do que isso.",
+          7: "O medo de errar já é um progresso: você está monitorando sua própria qualidade.",
+          10: "Escrever bem é uma vantagem real. Agora é hora de transferir isso para a fala."
+        }
+      },
+      {
+        category: "Como você age hoje",
+        text: "Em reuniões ou calls com falantes de inglês, qual é o seu comportamento mais comum?",
+        options: [
+          { label: "A", text: "Fico mais no modo ouvinte — espero o momento certo e, quando falo, é bem pouco", score: 4 },
+          { label: "B", text: "Participo quando alguém me pergunta diretamente, mas raramente tomo a iniciativa", score: 7 },
+          { label: "C", text: "Prefiro não participar de calls assim — evito quando posso", score: 1 },
+          { label: "D", text: "Participo normalmente, mas sinto que minha presença poderia ser mais marcante", score: 10 },
+        ],
+        feedback: {
+          1: "Evitar calls é uma resposta natural ao medo. Mas cada call que você evita é uma oportunidade que some.",
+          4: "Ficar no modo passivo é seguro, mas invisível. Você tem mais a dizer do que demonstra.",
+          7: "Responder quando chamado é o primeiro passo. Tomar a palavra é o próximo nível.",
+          10: "Você já está presente. O desafio agora é ser memorável — não só funcional."
+        }
+      },
+
+      // P4–P6: SITUACIONAIS
+      {
+        category: "O que acontece na prática",
+        text: "Você está numa viagem a trabalho e precisa resolver um problema inesperado (hotel, transporte, reunião). Como você lida?",
+        options: [
+          { label: "A", text: "Apelo para gestos, apps de tradução e torço pra dar certo", score: 1 },
+          { label: "B", text: "Me viro — resolvo, mas saio exausto(a) depois de tanto esforço mental", score: 4 },
+          { label: "C", text: "Resolvo sem grande drama situações rotineiras, mas situações fora do script me travam", score: 7 },
+          { label: "D", text: "Lido bem — a fala flui mesmo em situações de pressão", score: 10 },
+        ],
+        feedback: {
+          1: "Gestos e apps são muletas úteis, mas não substituem a confiança de se expressar com clareza.",
+          4: "Resolver com esforço é melhor do que não resolver. O objetivo é chegar no piloto automático.",
+          7: "Situações imprevisíveis são o teste real do idioma. Você já passa bem nos scripts — vamos além.",
+          10: "Falar sob pressão sem travar é uma habilidade rara. Você está perto do topo."
+        }
+      },
+      {
+        category: "O que acontece na prática",
+        text: "Você recebe uma promoção e vai trabalhar diretamente com um time internacional. Qual é o maior desafio que você imagina ter?",
+        options: [
+          { label: "A", text: "Ser levado(a) a sério — tenho medo de soar menos competente por causa do inglês", score: 4 },
+          { label: "B", text: "Acompanhar conversas rápidas entre nativos — quando falam entre si, perco o fio", score: 7 },
+          { label: "C", text: "Apresentar ideias e defender pontos de vista com clareza e autoridade", score: 10 },
+          { label: "D", text: "Qualquer comunicação seria difícil — ainda me sinto muito inseguro(a) no básico", score: 1 },
+        ],
+        feedback: {
+          1: "Esse é o ponto de partida mais honesto. E é exatamente daí que se constrói uma base sólida.",
+          4: "O medo de soar menos competente é real — e a solução é fazer o inglês trabalhar a seu favor, não contra.",
+          7: "Entender nativos em velocidade natural é um dos últimos obstáculos para a fluência real.",
+          10: "Defender ideias com autoridade é o uso mais estratégico do idioma. Você está mirando alto."
+        }
+      },
+      {
+        category: "O que acontece na prática",
+        text: "Você está assitindo a um filme ou série em inglês sem legenda. O que acontece?",
+        options: [
+          { label: "A", text: "Não consigo acompanhar — palavras soltas, sem contexto", score: 1 },
+          { label: "B", text: "Entendo partes, mas perco bastante quando falam rápido ou usam gírias", score: 4 },
+          { label: "C", text: "Entendo bem o geral, mas detalhe e nuance me escapam", score: 7 },
+          { label: "D", text: "Entendo com conforto — o desafio seria reproduzir o mesmo na fala espontânea", score: 10 },
+        ],
+        feedback: {
+          1: "A compreensão auditiva é o alicerce. Quando ela cresce, tudo começa a fluir mais rápido.",
+          4: "Entender partes é um progresso real — sua mente já está processando o idioma.",
+          7: "Entender o geral já é muito. O próximo salto é capturar o subtexto.",
+          10: "Entendimento sólido é metade da equação. A outra metade é transformar input em output fluente."
+        }
+      },
+
+      // P7–P9: TÉCNICAS
+      {
+        category: "Suas habilidades reais",
+        text: "Quando você tenta explicar uma ideia complexa em inglês, o que costuma acontecer?",
+        options: [
+          { label: "A", text: "Simplifico demais — digo coisas muito básicas pra não arriscar errar", score: 4 },
+          { label: "B", text: "A ideia fica na minha cabeça mas as palavras certas não saem — trava total", score: 1 },
+          { label: "C", text: "Me expresso, mas de forma desorganizada — as frases saem picadas ou com pausa longa", score: 7 },
+          { label: "D", text: "Consigo explicar, mas sinto que em português faria com muito mais precisão", score: 10 },
+        ],
+        feedback: {
+          1: "Ter a ideia clara e não conseguir externá-la é a definição do bloqueio. Existe uma técnica específica pra isso.",
+          4: "Simplificar é uma estratégia de sobrevivência. Mas você merece se expressar com a complexidade que pensa.",
+          7: "Frases picadas mostram que o pensamento está lá — o que falta é automatização.",
+          10: "A lacuna entre o português e o inglês é real. Fechá-la é uma questão de imersão guiada."
+        }
+      },
+      {
+        category: "Suas habilidades reais",
+        text: "Como você descreveria seu vocabulário em inglês para conversas profissionais?",
+        options: [
+          { label: "A", text: "Sei as palavras mais básicas, mas fico sem saída em conversas específicas de trabalho", score: 1 },
+          { label: "B", text: "Tenho um vocabulário razoável, mas uso sempre as mesmas palavras — falta variedade", score: 7 },
+          { label: "C", text: "Conheço bastante coisa, mas meu vocabulário soa formal demais — não tenho naturalidade", score: 10 },
+          { label: "D", text: "Consigo me virar, mas o vocabulário técnico da minha área ainda me falta", score: 4 },
+        ],
+        feedback: {
+          1: "Ampliar o vocabulário profissional muda completamente a percepção que os outros têm de você.",
+          4: "O vocabulário técnico é o próximo passo estratégico — é o que separa o funcional do confiante.",
+          7: "Variedade lexical é o que faz o inglês soar natural. Você está bem mais perto do que imagina.",
+          10: "Saber muito mas soar formal é um problema de registro. É ajustável e rápido de corrigir."
+        }
+      },
+      {
+        category: "Suas habilidades reais",
+        text: "Quando você percebe que cometeu um erro de gramática no meio de uma conversa, o que acontece?",
+        options: [
+          { label: "A", text: "Trava tudo — fico tão focado(a) no erro que perco o fio da conversa", score: 1 },
+          { label: "B", text: "Me corrijo mentalmente mas continuo — só me incomodo depois", score: 7 },
+          { label: "C", text: "Corrijo em voz alta na hora — prefiro ser preciso(a) mesmo que quebre o fluxo", score: 4 },
+          { label: "D", text: "Não paro pra isso — foco em ser compreendido(a) e me preocupo com precisão depois", score: 10 },
+        ],
+        feedback: {
+          1: "O erro virar bloqueio é o maior inimigo da fluência. Falar com imperfeições é parte do processo.",
+          4: "Corrigir em voz alta mostra consciência, mas quebra o ritmo. O segredo é manter a fluidez.",
+          7: "Seguir em frente e processar depois é uma ótima estratégia. Você está desenvolvendo resiliência.",
+          10: "Priorizar comunicação sobre perfeição é o mindset de quem fala bem de verdade. Excelente."
+        }
+      },
+
+      // P10: ASPIRACIONAL
+      {
+        category: "O que você quer conquistar",
+        text: "Se você destravasse o inglês de vez nos próximos meses, qual seria a primeira coisa que mudaria na sua vida?",
+        options: [
+          { label: "A", text: "Conseguiria a promoção que já devia ter chegado — ou mudaria de emprego para algo melhor", score: 7 },
+          { label: "B", text: "Viajaria sem aquela angústia de travar em situações simples do dia a dia", score: 4 },
+          { label: "C", text: "Participaria de oportunidades internacionais que hoje nem cogito por causa do inglês", score: 10 },
+          { label: "D", text: "Me sentiria menos envergonhado(a) — pararia de me diminuir quando o assunto surge", score: 1 },
+        ],
+        feedback: {
+          1: "A vergonha é o custo mais silencioso do inglês travado. E é o primeiro a desaparecer com o trabalho certo.",
+          4: "Viajar sem medo é uma das liberdades mais concretas que o inglês oferece. Você está perto disso.",
+          7: "A promoção que você merece não pode depender de uma barreira que tem solução. Vamos mudar isso.",
+          10: "Oportunidades internacionais são o nível mais estratégico. Esse é o objetivo mais poderoso que você pode ter."
+        }
+      }
+    ];
+
+    // ══════════════════════════════════════
+    // DATA — PROFILES
+    // ══════════════════════════════════════
+    const profiles = {
+      low: {
+        range: [0, 35],
+        label: "Bloqueado(a) pela Barreira",
+        level: "Nível Iniciante–Básico",
+        headline: "Seu inglês não é o problema — é o que ninguém te ensinou a fazer com ele.",
+        body: [
+          "O que os testes mostram não é falta de inteligência nem de esforço. É que você aprendeu inglês de uma forma que nunca te preparou pra usar de verdade — em situações reais, sob pressão, no improviso.",
+          "Cada vez que você travou, evitou uma call ou fingiu que entendeu, estava protegendo a si mesmo(a) de uma exposição que parecia grande demais. Isso é humano. Mas esse padrão tem um custo alto — e ele cresce com o tempo.",
+          "A boa notícia: sua barreira tem um ponto de entrada claro. Com o método certo, adultos nesse estágio avançam em velocidade surpreendente — porque a base de compreensão já existe. O que falta é a ativação."
+        ],
+        strengths: [
+          "Você entende mais do que consegue expressar — isso é uma vantagem real",
+          "Sua motivação está clara e conectada a objetivos concretos",
+          "Você reconhece o problema com honestidade — primeiro passo para mudar"
+        ],
+        limits: [
+          "O travamento na fala impede que seu nível real apareça",
+          "A dependência de tradução bloqueia o pensamento direto em inglês",
+          "Evitar situações reais reforça o bloqueio em vez de quebrá-lo"
+        ],
+        testimonial: {
+          quote: "Eu tinha vergonha de dizer que não falava inglês depois de tantos anos tentando. Em 4 meses, participei da minha primeira reunião internacional sem precisar de tradutor — e fui eu quem abriu a apresentação.",
+          name: "Mariana T.",
+          role: "Analista de Projetos · 4 meses no programa"
+        },
+        cta: {
+          headline: "O travamento tem solução — e ela começa com o diagnóstico certo.",
+          body: "A Clear Communication Path é construída exatamente para quem está no seu ponto. Não é um curso de inglês genérico — é um caminho desenhado para destravar adultos como você, com velocidade e clareza.",
+          scarcity: "Apenas 6 vagas abertas este mês"
+        }
+      },
+      mid: {
+        range: [36, 65],
+        label: "Preso(a) na Zona Perigosa",
+        level: "Nível Intermediário",
+        headline: "Você sabe o suficiente para se virar — e é exatamente isso que te prende.",
+        body: [
+          "O intermediário é o nível mais traiçoeiro do inglês. Você consegue se comunicar quando precisa, mas nunca com a fluidez e autoridade que a situação exige. E como 'dá pra se virar', parece que não há urgência de mudar.",
+          "O custo invisível desse estágio é alto: você está sendo avaliado(a) por como fala, não só pelo que sabe. Em reuniões internacionais, promoções e oportunidades, a percepção conta tanto quanto a competência — e um inglês travado envia a mensagem errada.",
+          "Adultos nessa zona têm um ativo enorme: conhecimento passivo sólido. O que falta não é mais vocabulário — é a reconexão entre o que você já sabe e a sua capacidade de usar isso em tempo real, sem travar."
+        ],
+        strengths: [
+          "Base de compreensão sólida — você entende conversas reais",
+          "Vocabulário funcional que pode ser ativado com treino direcionado",
+          "Experiência com o idioma que intermediários mais novos não têm"
+        ],
+        limits: [
+          "O 'dá pra se virar' vira desculpa pra não ir além",
+          "Falta confiança para se expressar com autoridade e precisão",
+          "O gap entre o que você pensa e o que consegue dizer ainda é grande"
+        ],
+        testimonial: {
+          quote: "Eu ficei anos achando que meu inglês 'estava bom o suficiente'. Depois de 3 meses, percebi que estava deixando dinheiro e oportunidades na mesa por uma barreira que era muito menor do que eu pensava.",
+          name: "Ricardo A.",
+          role: "Gerente de Operações · 3 meses no programa"
+        },
+        cta: {
+          headline: "Chega de se virar. Está na hora de se expressar com autoridade.",
+          body: "A Clear Communication Path vai pegar tudo que você já sabe e transformar em comunicação clara, confiante e estratégica — do jeito que as oportunidades que você quer exigem.",
+          scarcity: "Apenas 6 vagas abertas este mês"
+        }
+      },
+      high: {
+        range: [66, 100],
+        label: "Potencial Subutilizado",
+        level: "Nível Intermediário–Avançado",
+        headline: "Seu inglês está bom. Bom não é suficiente para o nível que você quer atingir.",
+        body: [
+          "Você já tem o que a maioria luta anos para construir: compreensão sólida, vocabulário razoável e a coragem de se comunicar. Mas há uma lacuna específica entre o inglês que você usa agora e o inglês que te leva ao próximo nível profissional.",
+          "Essa lacuna não é de gramática. É de precisão, naturalidade e presença — a diferença entre ser compreendido e ser levado a sério. Em ambientes internacionais de alta performance, isso é o que separa quem participa de quem lidera.",
+          "O risco para quem está no seu estágio é achar que já está bom o suficiente e parar de crescer. Cada mês nesse platô é uma oportunidade que passa pra alguém que decidiu ir além."
+        ],
+        strengths: [
+          "Comunicação funcional em contextos variados",
+          "Vocabulário amplo com capacidade de adaptação",
+          "Compreensão auditiva desenvolvida — base para a fluência real"
+        ],
+        limits: [
+          "Falta de naturalidade e precisão em momentos de alta pressão",
+          "Dificuldade em liderar conversas — não só participar delas",
+          "O inglês ainda não reflete o nível de raciocínio e competência que você tem"
+        ],
+        testimonial: {
+          quote: "Eu achava que meu inglês já estava adequado. O programa me mostrou exatamente onde eu estava deixando de causar impacto — e me deu as ferramentas pra mudar isso em menos de 90 dias.",
+          name: "Fernanda C.",
+          role: "Diretora Financeira · 90 dias no programa"
+        },
+        cta: {
+          headline: "Você já tem a base. Está na hora de transformar em liderança.",
+          body: "A Clear Communication Path vai refinar o que você tem e construir a precisão e presença que faltam para você se expressar no nível das oportunidades que está buscando.",
+          scarcity: "Apenas 6 vagas abertas este mês"
+        }
+      }
+    };
+
+    // ══════════════════════════════════════
+    // A/B HEADLINE VARIANTS
+    // ══════════════════════════════════════
+    // ⚠️ Para testar: mude ACTIVE_HEADLINE para 'A', 'B' ou 'C'
+    // Em produção, você pode definir via URL param: ?hl=B
+    const HEADLINE_VARIANTS = {
+      A: {
+        // Ângulo: bloqueio na hora H — foco no travamento
+        headline: `Você entende tudo,<br>mas na hora de falar… <em>trava</em>.`,
+        sub: `Descubra exatamente por que você ainda não consegue se expressar em inglês quando mais precisa — e o que fazer para destravar de vez.`
+      },
+      B: {
+        // Ângulo: custo profissional — foco na oportunidade perdida
+        headline: `Quantas oportunidades seu inglês já te<br><em>custou</em>?`,
+        sub: `Em 10 perguntas, você descobre por que o inglês ainda te trava nas horas que mais importam — e qual é o próximo passo real.`
+      },
+      C: {
+        // Ângulo: identidade — foco na contradição interna
+        headline: `Você é competente em tudo.<br>Menos quando precisa falar em <em>inglês</em>.`,
+        sub: `Faça o diagnóstico gratuito e descubra o que está bloqueando sua expressão — e como virar esse jogo de vez.`
+      }
+    };
+
+    // ── Detecta variante via URL param ou usa A como padrão ──
+    function getActiveVariant() {
+      const params = new URLSearchParams(window.location.search);
+      const hl = (params.get('hl') || 'A').toUpperCase();
+      return ['A', 'B', 'C'].includes(hl) ? hl : 'A';
+    }
+
+    let ACTIVE_HEADLINE = getActiveVariant();
+
+    function setHeadline(variant) {
+      ACTIVE_HEADLINE = variant;
+      const v = HEADLINE_VARIANTS[variant];
+      document.getElementById('landing-headline-text').innerHTML = v.headline;
+      document.getElementById('landing-sub-text').textContent = v.sub;
+      // Update switcher buttons
+      ['A', 'B', 'C'].forEach(k => {
+        document.getElementById(`btn-ab-${k.toLowerCase()}`).classList.toggle('active', k === variant);
+      });
+    }
+
+    // Init on load
+    document.addEventListener('DOMContentLoaded', () => {
+      setHeadline(ACTIVE_HEADLINE);
+    });
+
+    // ══════════════════════════════════════
+    // STATE
+    // ══════════════════════════════════════
+    let currentQ = 0;
+    let totalScore = 0;
+    let answered = false;
+    let leadName = '';
+    let leadEmail = '';
+
+    // ══════════════════════════════════════
+    // NAVIGATION
+    // ══════════════════════════════════════
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function startQuiz() {
+      showScreen('screen-quiz');
+      renderQuestion();
+    }
+
+    // ══════════════════════════════════════
+    // LEAD CAPTURE
+    // ══════════════════════════════════════
+    function showCapture() {
+      showScreen('screen-capture');
+      // Pre-fill if already filled
+      if (leadName) document.getElementById('lead-name').value = leadName;
+      if (leadEmail) document.getElementById('lead-email').value = leadEmail;
+    }
+
+    function submitCapture() {
+      const nameEl = document.getElementById('lead-name');
+      const emailEl = document.getElementById('lead-email');
+      const errName = document.getElementById('error-name');
+      const errEmail = document.getElementById('error-email');
+
+      let valid = true;
+
+      // Validate name
+      const nameVal = nameEl.value.trim();
+      if (!nameVal) {
+        errName.textContent = 'Por favor, informe seu nome.';
+        nameEl.classList.add('invalid');
+        valid = false;
+      } else {
+        errName.textContent = '';
+        nameEl.classList.remove('invalid');
+      }
+
+      // Validate email
+      const emailVal = emailEl.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailVal || !emailRegex.test(emailVal)) {
+        errEmail.textContent = 'Informe um e-mail válido.';
+        emailEl.classList.add('invalid');
+        valid = false;
+      } else {
+        errEmail.textContent = '';
+        emailEl.classList.remove('invalid');
+      }
+
+      if (!valid) return;
+
+      leadName = nameVal;
+      leadEmail = emailVal;
+
+      // ⚠️ INTEGRAÇÃO OPCIONAL: envie os dados para seu CRM/webhook aqui
+      // Exemplo: fetch('https://seu-webhook.com', { method: 'POST', body: JSON.stringify({ name: leadName, email: leadEmail, score: totalScore, variant: ACTIVE_HEADLINE }) })
+
+      showResult();
+    }
+
+    // ══════════════════════════════════════
+    // QUIZ LOGIC
+    // ══════════════════════════════════════
+    function renderQuestion() {
+      answered = false;
+      const q = questions[currentQ];
+      const total = questions.length;
+
+      document.getElementById('quiz-counter').textContent = `Pergunta ${currentQ + 1} de ${total}`;
+      document.getElementById('progress-bar').style.width = `${(currentQ / total) * 100}%`;
+      document.getElementById('q-category').textContent = q.category;
+      document.getElementById('q-text').textContent = q.text;
+
+      const feedbackBox = document.getElementById('feedback-box');
+      feedbackBox.textContent = '';
+      feedbackBox.classList.remove('visible');
+
+      const btnNext = document.getElementById('btn-next');
+      btnNext.classList.remove('visible');
+
+      // Reset card animation
+      const card = document.getElementById('question-card');
+      card.style.animation = 'none';
+      card.offsetHeight; // reflow
+      card.style.animation = '';
+
+      const list = document.getElementById('options-list');
+      list.innerHTML = '';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = `<span class="option-letter">${opt.label}</span><span>${opt.text}</span>`;
+        btn.addEventListener('click', () => selectOption(btn, opt.score, q.feedback[opt.score]));
+        list.appendChild(btn);
+      });
+    }
+
+    function selectOption(btn, score, feedback) {
+      if (answered) return;
+      answered = true;
+
+      // Mark selected
+      btn.classList.add('selected');
+
+      // Disable all
+      document.querySelectorAll('.option-btn').forEach(b => { b.disabled = true; });
+
+      // Feedback
+      const feedbackBox = document.getElementById('feedback-box');
+      feedbackBox.textContent = feedback;
+      feedbackBox.classList.add('visible');
+
+      totalScore += score;
+
+      // Show next
+      const btnNext = document.getElementById('btn-next');
+      btnNext.classList.add('visible');
+      if (currentQ === questions.length - 1) {
+        btnNext.textContent = 'Ver meu resultado →';
+      } else {
+        btnNext.textContent = 'Próxima pergunta →';
+      }
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ >= questions.length) {
+        showCapture(); // captura lead antes do resultado
+      } else {
+        renderQuestion();
+      }
+    }
+
+    // ══════════════════════════════════════
+    // RESULT
+    // ══════════════════════════════════════
+    function showResult() {
+      // Normalize score to 0–100
+      const maxPossible = questions.length * 10;
+      const normalizedScore = Math.round((totalScore / maxPossible) * 100);
+
+      // Pick profile
+      let profile;
+      if (normalizedScore <= 35) profile = profiles.low;
+      else if (normalizedScore <= 65) profile = profiles.mid;
+      else profile = profiles.high;
+
+      showScreen('screen-result');
+
+      // Render score ring
+      setTimeout(() => {
+        const circumference = 408;
+        const fill = document.getElementById('ring-fill');
+        const offset = circumference - (circumference * normalizedScore / 100);
+        fill.style.strokeDashoffset = offset;
+
+        // Animate counter
+        animateCounter(document.getElementById('score-display'), 0, normalizedScore, 1800);
+
+        document.getElementById('score-level-label').textContent = profile.level;
+      }, 200);
+
+      // Profile card — with personalized greeting
+      const firstName = leadName ? leadName.split(' ')[0] : '';
+      const greeting = firstName ? `<p class="profile-greeting">Olá, <strong>${firstName}</strong>. Aqui está o que o seu diagnóstico revelou:</p>` : '';
+      const card = document.getElementById('profile-card');
+      card.innerHTML = `
+    ${greeting}
+    <span class="profile-label">${profile.label}</span>
+    <h2 class="profile-headline">${profile.headline}</h2>
+    <div class="profile-body">
+      ${profile.body.map(p => `<p>${p}</p>`).join('')}
+    </div>
+    <div class="profile-grid">
+      <div class="grid-col">
+        <h4>✓ Seus pontos fortes</h4>
+        <ul>
+          ${profile.strengths.map(s => `<li><span class="icon">✓</span>${s}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="grid-col">
+        <h4>→ O que te limita agora</h4>
+        <ul>
+          ${profile.limits.map(l => `<li><span class="icon">→</span>${l}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+
+      // Testimonial
+      const t = profile.testimonial;
+      document.getElementById('testimonial-box').innerHTML = `
+    <p class="testimonial-text">"${t.quote}"</p>
+    <div class="testimonial-author">${t.name}</div>
+    <div class="testimonial-role">${t.role}</div>
+  `;
+
+      // CTA
+      // ⚠️ SUBSTITUA O LINK ABAIXO PELO LINK DO SEU FORMULÁRIO DE APLICAÇÃO
+      const formLink = "https://forms.gle/acFg1wTcJJvDgM1P8";
+
+      document.getElementById('cta-section').innerHTML = `
+    <h3 class="cta-headline">${profile.cta.headline}</h3>
+    <p class="cta-body">${profile.cta.body}</p>
+    <a href="${formLink}" target="_blank" class="btn-cta">→ Quero minha análise personalizada</a>
+    <p class="scarcity">${profile.cta.scarcity}</p>
+  `;
+    }
+
+    function animateCounter(el, start, end, duration) {
+      const range = end - start;
+      const startTime = performance.now();
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(start + range * ease);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+  </script>
+</body>
+
+</html>
