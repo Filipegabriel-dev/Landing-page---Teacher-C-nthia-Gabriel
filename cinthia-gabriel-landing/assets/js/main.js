@@ -44,3 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// FAQ Accordion toggle
+function toggleFaq(button) {
+  const faqItem = button.parentElement;
+  const answer = faqItem.querySelector('.faq-answer');
+  const icon = button.querySelector('.faq-icon');
+  const isOpen = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
+
+  // Close all other FAQ items
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const ans = item.querySelector('.faq-answer');
+    const ic = item.querySelector('.faq-icon');
+    if (item !== faqItem) {
+      ans.style.maxHeight = '0px';
+      ic.style.transform = 'rotate(0deg)';
+    }
+  });
+
+  // Toggle current item
+  if (isOpen) {
+    answer.style.maxHeight = '0px';
+    icon.style.transform = 'rotate(0deg)';
+  } else {
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    icon.style.transform = 'rotate(180deg)';
+  }
+}
